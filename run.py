@@ -1,3 +1,6 @@
+################
+# IMPORTS
+################
 # We have to import os to access env vars
 import os
 # We're going to do some things with datetimes, so need that module
