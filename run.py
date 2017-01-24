@@ -33,8 +33,9 @@ from_phone_number = os.environ.get("TWILIO_PHONE_NUMBER")
 
 twilio_client = TwilioRestClient(account_sid, auth_token)
 
-# Reference the twilio-python docs to figure out how
-# to write the send_message function:
+# This method will need to take a message argument, and send that
+# message to the correct phone number, from our twilio phone number.
+# Docs on sending a message with the twilio client:
 # http://twilio-python.readthedocs.io/en/latest/usage/messages.html
 def send_message(message):
     return twilio_client.messages.create(to=to_phone_number,
