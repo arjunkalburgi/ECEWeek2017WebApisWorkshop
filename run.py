@@ -38,9 +38,9 @@ twilio_client = TwilioRestClient(account_sid, auth_token)
 # Docs on sending a message with the twilio client:
 # http://twilio-python.readthedocs.io/en/latest/usage/messages.html
 def send_message(message):
-    return twilio_client.messages.create(to=to_phone_number,
-        from_=from_phone_number,
-        body=message)
+    #>>>>>>>>>>> YOUR CODE STARTS HERE
+
+    #<<<<<<<<<<< YOUR CODE ENDS HERE
 
 ################
 # GITHUB SECTION
@@ -62,15 +62,9 @@ github_client = Github(github_username, github_password)
 # Docs about the issue object:
 # http://pygithub.readthedocs.io/en/latest/github_objects/Issue.html
 def get_most_recent_issue_timestamp():
-    # Default to Jan 1, 1970
-    timestamp = datetime.datetime.fromtimestamp(0)
-    repo = github_client.get_repo(github_repo_name)
-    issues = repo.get_issues()
-    # Look for the maximum updated_at timestamp
-    for issue in issues:
-        timestamp = max(timestamp, issue.updated_at)
+    #>>>>>>>>>>> YOUR CODE STARTS HERE
 
-    return timestamp
+    #<<<<<<<<<<< YOUR CODE ENDS HERE
 
 ################
 # MAIN SECTION
@@ -80,10 +74,6 @@ print "Running..."
 most_recent_timestamp = get_most_recent_issue_timestamp()
 
 while True:
-    fetched_timestamp = get_most_recent_issue_timestamp()
-    print "Checking for new or modified issues..."
-    if fetched_timestamp > most_recent_timestamp:
-        print "Sending alert!"
-        most_recent_timestamp = fetched_timestamp
-        send_message("Update on issues for " + github_repo_name)
-    time.sleep(15)
+        #>>>>>>>>>>> YOUR CODE STARTS HERE
+
+        #<<<<<<<<<<< YOUR CODE ENDS HERE
