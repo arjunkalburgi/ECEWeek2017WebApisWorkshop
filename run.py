@@ -37,10 +37,17 @@ twilio_client = TwilioRestClient(account_sid, auth_token)
 # message to the correct phone number, from our twilio phone number.
 # Docs on sending a message with the twilio client:
 # http://twilio-python.readthedocs.io/en/latest/usage/messages.html
-def send_message(message):
+def send_message(text):
     #>>>>>>>>>>> YOUR CODE STARTS HERE
-
+	message = twilio_client.messages.create(
+	    body=text,
+	    to=to_phone_number,
+	    from_=from_phone_number,
+	)
+	print message.sid
     #<<<<<<<<<<< YOUR CODE ENDS HERE
+
+# send_message("Sent from your Twilio trial account - Hello there!")
 
 ################
 # GITHUB SECTION
@@ -63,7 +70,10 @@ github_client = Github(github_username, github_password)
 # http://pygithub.readthedocs.io/en/latest/github_objects/Issue.html
 def get_most_recent_issue_timestamp():
     #>>>>>>>>>>> YOUR CODE STARTS HERE
-
+    repo = github_client.get_repo(github_repo_name)
+    issues = repo.get_issues(sort="updated")
+    # print(issues[0])
+    return issues[0].updated_at
     #<<<<<<<<<<< YOUR CODE ENDS HERE
 
 ################
@@ -72,8 +82,9 @@ def get_most_recent_issue_timestamp():
 print "Running..."
 
 most_recent_timestamp = get_most_recent_issue_timestamp()
-
 while True:
-        #>>>>>>>>>>> YOUR CODE STARTS HERE
-
-        #<<<<<<<<<<< YOUR CODE ENDS HERE
+    #>>>>>>>>>>> YOUR CODE STARTS HERE
+    if most_recent_timestamp < get_most_recent_issue_timestamp(): 
+    	send_message("You just got a new issue on " + github_repo_name + "!\n\nCheck on it here: https://github.com/" + github_repo_name + "/issues ")
+    time.sleep(30)
+    #<<<<<<<<<<< YOUR CODE ENDS HERE
